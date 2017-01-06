@@ -880,7 +880,7 @@ public class HTTPHypermediaRIM implements HTTPResourceInteractionModel {
         }
     }
 
-    private MultivaluedMap<String, String> filterParameters(MultivaluedMap<String, String> parameters, Set<String> filterKeys) {
+    protected MultivaluedMap<String, String> filterParameters(MultivaluedMap<String, String> parameters, Set<String> filterKeys) {
         MultivaluedMap<String, String> filteredParameters = new MultivaluedMapImpl<>();
         if (filterKeys == null) {
             return filteredParameters;
@@ -893,11 +893,11 @@ public class HTTPHypermediaRIM implements HTTPResourceInteractionModel {
         return filteredParameters;
     }
 
-    private MultivaluedMap<String, String> getStateParameters(ResourceStateAndParameters stateAndParams) {
+    protected MultivaluedMap<String, String> getStateParameters(ResourceStateAndParameters stateAndParams) {
         return ParameterAndValue.getParamAndValueAsMultiValueMap(stateAndParams.getParams());
     }
 
-    private MultivaluedMap<String, String> buildPathParameters(Transition resourceTransition, InteractionContext ctx) {
+    protected MultivaluedMap<String, String> buildPathParameters(Transition resourceTransition, InteractionContext ctx) {
         MultivaluedMap<String, String> pathParameters = copyParameters(ctx.getPathParameters());
         if (ctx.getResource() != null) {
             Map<String, Object> transitionProperties = hypermediaEngine.getTransitionProperties(resourceTransition,
@@ -910,7 +910,7 @@ public class HTTPHypermediaRIM implements HTTPResourceInteractionModel {
         return pathParameters;
     }
 
-    private MultivaluedMap<String, String> copyParameters(MultivaluedMap<String, String> parameters) {
+    protected MultivaluedMap<String, String> copyParameters(MultivaluedMap<String, String> parameters) {
         MultivaluedMap<String, String> parametersCopy = new MultivaluedMapImpl<>();
         parametersCopy.putAll(parameters);
         return parametersCopy;
